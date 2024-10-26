@@ -1,52 +1,89 @@
-let hasFlippedBlock = false;
-let lockBoard = false;
-let firstBlock, secondBlock;
+document.addEventListener("DOMContentLoaded", () => {
+    // Array of imagess
+    const images = [
+        "./images/img1.jpg",
+        "./images/img1.jpg",
+        "./images/img2.jpg",
+        "./images/img2.jpg",
+        "./images/img3.jpg",
+        "./images/img3.jpg",
+        "./images/img4.jpg",
+        "./images/img4.jpg",
+        "./images/img5.jpg",
+        "./images/img5.jpg",
+        "./images/img6.jpg",
+        "./images/img6.jpg",
+    ];
 
-document.querySelectorAll(".block").forEach(bl => {
-    bl.addEventListener('click', flipBlock);
-});
-
-function flipBlock() {
-    if (lockBoard) return;
-    if (this === firstBlock) return;
-
-    this.classList.add('flipped');
-
-    if (!hasFlippedBlock) {
-        hasFlippedBlock = true;
-        firstBlock = this;
-        return;
+    //Fisher-Yates algorithm
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
     }
-    
-    secondBlock = this;
-    checkForMatch();
-}
 
-function checkForMatch() {
-    let isMatch = firstBlock.dataset.image === secondBlock.dataset.image;
+    const shuffledImages = shuffle(images);
 
-    isMatch ? disableBlocks() : unflipBlocks();
-}
+    // Select all blocks and assign shuffled images
+    const blocks = document.querySelectorAll(".block");
+    blocks.forEach((block, index) => {
+        const img = document.createElement("img");
+        img.src = shuffledImages[index];
+        img.alt = "Memory Image";
+        img.style.display = "none"; // Initially hidden
+        block.appendChild(img);
+        block.dataset.image = shuffledImages[index];
+    });
 
-function disableBlocks() {
-    firstBlock.removeEventListener('click', flipBlock);
-    secondBlock.removeEventListener('click', flipBlock);
+    let hasFlippedBlock = false;
+    let lockBoard = false;
+    let firstBlock, secondBlock;
 
-    resetBoard();
-}
+    blocks.forEach(block => block.addEventListener("click", flipBlock));
 
-function unflipBlocks() {
-    lockBoard = true;
+    function flipBlock() {
+        if (lockBoard) return;
+        if (this === firstBlock) return;
 
-    setTimeout(() => {
-        firstBlock.classList.remove('flipped');
-        secondBlock.classList.remove('flipped');
+        this.classList.add("flipped");
+        this.querySelector("img").style.display = "block";
 
+        if (!hasFlippedBlock) {
+            hasFlippedBlock = true;
+            firstBlock = this;
+            return;
+        }
+
+        secondBlock = this;
+        checkForMatch();
+    }
+
+    function checkForMatch() {
+        let isMatch = firstBlock.dataset.image === secondBlock.dataset.image;
+        isMatch ? disableBlocks() : unflipBlocks();
+    }
+
+    function disableBlocks() {
+        firstBlock.removeEventListener("click", flipBlock);
+        secondBlock.removeEventListener("click", flipBlock);
         resetBoard();
-    }, 1000);
-}
+    }
 
-function resetBoard() {
-    [hasFlippedBlock, lockBoard] = [false, false];
-    [firstBlock, secondBlock] = [null, null];
-}
+    function unflipBlocks() {
+        lockBoard = true;
+        setTimeout(() => {
+            firstBlock.classList.remove("flipped");
+            firstBlock.querySelector("img").style.display = "none";
+            secondBlock.classList.remove("flipped");
+            secondBlock.querySelector("img").style.display = "none";
+            resetBoard();
+        }, 1000);
+    }
+
+    function resetBoard() {
+        [hasFlippedBlock, lockBoard] = [false, false];
+        [firstBlock, secondBlock] = [null, null];
+    }
+});
