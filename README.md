@@ -1,6 +1,7 @@
  # FIRST TIME IN LBSITW: hack for  stack
 
-![WhatsApp Image 2025-01-19 at 10 56 26 PM](https://github.com/user-attachments/assets/3bcbd3c3-f41a-4136-acd7-323c34eaaf9b)
+![WhatsApp Image 2025-01-19 at 10 56 26 PM (1)](https://github.com/user-attachments/assets/773c1184-1787-4920-9f10-f1d4f75e5c23)
+
 
 
 # Memory-block-game
