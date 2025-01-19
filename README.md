@@ -12,8 +12,6 @@ A fun and interactive memory game built with HTML, CSS, and JavaScript. Flip blo
 
 A "Memory Block" game, built using HTML, CSS, and JavaScript, is a classic matching game where players must flip over pairs of blocks to reveal hidden images, aiming to find matching pairs by memory alone. The game typically features a grid of blocks, each initially displaying a blank face, and the player clicks on blocks to flip them over, revealing an image underneath. If the two flipped blocks match, they stay revealed; if not, they flip back over, and the player continues clicking to find more pairs.
 
-![WhatsApp Image 2025-01-19 at 10 56 26 PM](https://github.com/user-attachments/assets/47e5c1f4-9100-4a9e-bf84-a85da665d11c)
-
 
 ## Features 
 <li> Images are shuffled each time the game starts for a unique experience.</li>
