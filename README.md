@@ -1,3 +1,8 @@
+ # FIRST TIME IN LBSITW: hack for  stack
+
+![WhatsApp Image 2025-01-19 at 10 56 26 PM](https://github.com/user-attachments/assets/3bcbd3c3-f41a-4136-acd7-323c34eaaf9b)
+
+
 # Memory-block-game
 
 A fun and interactive memory game built with HTML, CSS, and JavaScript. Flip blocks to reveal hidden images and match pairs to win the game!
